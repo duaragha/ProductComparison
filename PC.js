@@ -1,37 +1,34 @@
-function updateProductList() {
-    var collectionSelector = document.getElementById('collectionSelector');
-    var selectedCollectionId = collectionSelector.value;
-    var productSelector = document.getElementById('productSelector');
-    productSelector.innerHTML = '';
+document.addEventListener("DOMContentLoaded", function () {
+    var numCollections = 4;
 
-    var option = document.createElement('option');
-    option.value = "{{ product.id }}";
-    option.setAttribute('data-price', "{{ product.price | money }}");
-    option.text = "{{ product.title }}";
-    productSelector.appendChild(option);
+    var collectionDropdowns = [];
+    var productSelections = [];
+    var productDropdowns = [];
 
-    updateComparison('productSelector', 'comparisonResult');
-}
+    for (var i = 1; i <= numCollections; i++) {
+        collectionDropdowns[i] = document.getElementById('collectionSelector' + i);
+        productSelections[i] = document.getElementById('productSelection' + i);
+        productDropdowns[i] = document.getElementById('productSelector' + i);
 
-function updateComparison(selectorId, resultContainerId) {
-    var selector = document.getElementById(selectorId);
-    var selectedIndex = selector.selectedIndex;
+        addCollectionChangeListener(i);
+    }
 
-    var selectedOption = selector.options[selectedIndex];
-    var productId = selectedOption.value;
-    var productPrice = selectedOption.getAttribute("data-price");
-    var productRes = selectedOption.getAttribute("data-resolution");
-    var productDetails = {
-        name: selectedOption.text,
-        price: productPrice,
-        res: productRes,
-        image: "product-image.jpg" //need to be updated
-    };
+    function addCollectionChangeListener(index) {
+        collectionDropdowns[index].addEventListener("change", function () {
+            var selectedCollectionHandle = this.value;
+            productSelections[index].style.display = selectedCollectionHandle ? 'block' : 'none';
+            productDropdowns[index].innerHTML = '<option value="" selected disabled>Select a Product</option>';
 
-    var resultContainer = document.getElementById(resultContainerId);
-    resultContainer.innerHTML = `
-            <img src="${productDetails.image}" alt="${productDetails.name}">
-            <h3>${productDetails.name}</h3>
-            <p>${productDetails.price}</p>
-            <p>${productDetails.res}</p>`;
-}
+            {% for collection in collections %}
+            if ("{{ collection.handle }}" === selectedCollectionHandle) {
+                {% for product in collection.products %}
+                var option = document.createElement('option');
+                option.value = "{{ product.handle }}";
+                option.text = "{{ product.title | truncate 40}}";
+                productDropdowns[index].appendChild(option);
+                {% endfor %}
+            }
+            {% endfor %}
+        });
+    }
+});

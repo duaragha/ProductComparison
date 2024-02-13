@@ -10,81 +10,98 @@
       <tr>
         <th></th>
         <th scope="col">
-          <div class="productSelectorContainer">
-            <label for="collectionSelector">Select a Collection: </label>
-            <select id="collectionSelector" onchange="updateProductList()">
+          <div class="collectionSelector">
+            <select id="collectionSelector1" onchange="updateProductList('productSelector1', 'comparisonResult1')">
+              <option value="" selected disabled>Select a Collection</option>
               {% for collection in collections %}
-                <option value="{{ collection.id }}">{{ collection.title }}</option>
+                {% if collection.title contains 'IP Security Systems'
+                  or collection.title contains 'Analog Security Systems'
+                %}
+                  <option value="{{ collection.handle }}">{{ collection.title }}</option>
+                {% endif %}
               {% endfor %}
             </select>
             <br>
-            <label for="productSelector">Select a Product:</label>
-            <select id="productSelector" onchange="updateComparison('productSelector', 'comparisonResult')"></select>
-            <div id="comparisonResult" class="comparisonResult"></div>
+            <div id="productSelection1" style="display: none;">
+              <select
+                id="productSelector1"
+                onchange="updateComparison('productSelector1', 'comparisonResult1')"
+              ></select>
+            </div>
+            <div id="comparisonResult1" class="comparisonResult"></div>
           </div>
         </th>
-        <th>
-          <div class="productSelectorContainer">
-            <label for="collectionSelector">Select a Collection: </label>
-            <select id="collectionSelector" onchange="updateProductList()">
+        <th scope="col">
+          <div class="collectionSelector">
+            <select id="collectionSelector2" onchange="updateProductList('productSelector2', 'comparisonResult2')">
+              <option value="" selected disabled>Select a Collection</option>
               {% for collection in collections %}
-                <option value="{{ collection.id }}">{{ collection.title }}</option>
+                {% if collection.title contains 'IP Security Systems'
+                  or collection.title contains 'Analog Security Systems'
+                %}
+                  <option value="{{ collection.handle }}">{{ collection.title }}</option>
+                {% endif %}
               {% endfor %}
             </select>
             <br>
-            <label for="productSelector">Select a Product:</label>
-            <select id="productSelector" onchange="updateComparison('productSelector', 'comparisonResult')">
-              {% for product in collections.all.products %}
-                <option value="{{ product.id }}" data-price="{{ product.price | money }}">{{ product.title }}</option>
-              {% endfor %}
-            </select>
-            <div id="comparisonResult" class="comparisonResult"></div>
+            <div id="productSelection2" style="display: none;">
+              <select
+                id="productSelector2"
+                onchange="updateComparison('productSelector2', 'comparisonResult2')"
+              ></select>
+            </div>
+            <div id="comparisonResult2" class="comparisonResult"></div>
           </div>
         </th>
-        <th>
-          <div class="productSelectorContainer">
-            <label for="collectionSelector">Select a Collection: </label>
-            <select id="collectionSelector" onchange="updateProductList()">
+        <th scope="col">
+          <div class="collectionSelector">
+            <select id="collectionSelector3" onchange="updateProductList('productSelector3', 'comparisonResult3')">
+              <option value="" selected disabled>Select a Collection</option>
               {% for collection in collections %}
-                <option value="{{ collection.id }}">{{ collection.title }}</option>
+                {% if collection.title contains 'IP Security Systems'
+                  or collection.title contains 'Analog Security Systems'
+                %}
+                  <option value="{{ collection.handle }}">{{ collection.title }}</option>
+                {% endif %}
               {% endfor %}
             </select>
             <br>
-            <label for="productSelector">Select a Product:</label>
-            <select id="productSelector" onchange="updateComparison('productSelector', 'comparisonResult')">
-              {% for product in collections.all.products %}
-                <option value="{{ product.id }}" data-price="{{ product.price | money }}">{{ product.title }}</option>
-              {% endfor %}
-            </select>
-            <div id="comparisonResult" class="comparisonResult"></div>
+            <div id="productSelection3" style="display: none;">
+              <select
+                id="productSelector3"
+                onchange="updateComparison('productSelector3', 'comparisonResult3')"
+              ></select>
+            </div>
+            <div id="comparisonResult3" class="comparisonResult"></div>
           </div>
         </th>
-        <th>
-          <div class="productSelectorContainer">
-            <label for="collectionSelector">Select a Collection: </label>
-            <select id="collectionSelector" onchange="updateProductList()">
+        <th scope="col">
+          <div class="collectionSelector">
+            <select id="collectionSelector4" onchange="updateProductList('productSelector4', 'comparisonResult4')">
+              <option value="" selected disabled>Select a Collection</option>
               {% for collection in collections %}
-                <option value="{{ collection.id }}">{{ collection.title }}</option>
+                {% if collection.title contains 'IP Security Systems'
+                  or collection.title contains 'Analog Security Systems'
+                %}
+                  <option value="{{ collection.handle }}">{{ collection.title }}</option>
+                {% endif %}
               {% endfor %}
             </select>
             <br>
-            <label for="productSelector">Select a Product:</label>
-            <select id="productSelector" onchange="updateComparison('productSelector', 'comparisonResult')">
-              {% for product in collections.all.products %}
-                <option value="{{ product.id }}" data-price="{{ product.price | money }}">{{ product.title }}</option>
-              {% endfor %}
-            </select>
-            <div id="comparisonResult" class="comparisonResult"></div>
+            <div id="productSelection4" style="display: none;">
+              <select
+                id="productSelector4"
+                onchange="updateComparison('productSelector4', 'comparisonResult4')"
+              ></select>
+            </div>
+            <div id="comparisonResult4" class="comparisonResult"></div>
           </div>
         </th>
       </tr>
       <tr>
-        <td>Test</td>
+        <td>Price</td>
       </tr>
     </thead>
-    <tbody>
-      <tr id="comparisonResult"></tr>
-    </tbody>
   </table>
 </main>
 
