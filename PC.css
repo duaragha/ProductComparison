@@ -1,0 +1,20 @@
+#productSelector {
+    max-width: 325px;
+}
+
+.comparisonTable th {
+    background-color: #f2f2f2;
+}
+
+.comparisonTable {
+    width: 80%;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.comparisonTable th,
+.comparisonTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
